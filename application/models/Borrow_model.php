@@ -24,6 +24,7 @@ class Borrow_model extends CI_Model{
         'student_id'=>$this->session->userdata('sess_student_id'),
         'book_id'=>$rows->book_id,
         'borrow_date'=>date('Y-m-d'),
+        'send_state'=>'n',
       );
       $this->db->insert('lend', $data);
     }

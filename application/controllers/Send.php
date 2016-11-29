@@ -24,7 +24,8 @@ class Send extends CI_Controller{
   public function send_book()
   {
     $this->send_model->send_book();
-    $this->load->view('/send/send_form');
+    $data['result'] = $this->send_model->list_send_book()->result();
+    $this->load->view('/send/send_list', $data);
   }
 
 }

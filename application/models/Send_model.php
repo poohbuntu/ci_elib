@@ -45,4 +45,15 @@ class Send_model extends CI_Model{
     }
   }
 
+  public function list_send_book()
+  {
+    $send_id = $this->session->userdata('sess_send_id');
+
+    $this->db->select();
+    $this->db->from('lend');
+    $this->db->where('send_id', $send_id);
+    $query = $this->db->get();
+
+    return $query;
+  }
 }

@@ -25,6 +25,8 @@
       foreach ($result as $row) {
         echo $row->book_id;
         echo nbs();
+        echo $row->book_name;
+        echo nbs();
         echo $row->borrow_date;
         echo br();
       }

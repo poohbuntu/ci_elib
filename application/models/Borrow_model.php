@@ -37,9 +37,10 @@ class Borrow_model extends CI_Model{
   {
     $student_id = $this->session->userdata('sess_student_id');
 
-    $this->db->select();
+    $this->db->select('lend.student_id,lend.book_id,books.book_name,lend.borrow_date');
     $this->db->from('lend');
-    $this->db->where('student_id', $student_id);
+    $this->db->join('books','books.book_id = lend.book_id');
+    $this->db->where('lend.student_id', $student_id);
     $query = $this->db->get();
 
     return $query;

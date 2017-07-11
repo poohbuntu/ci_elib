@@ -9,6 +9,19 @@ class Borrow_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function check_limit_book()
+  {
+    $student_id = $this->session->userdata('sess_student_id');
+    $title_id = $this->session->userdata('sess_title_id');
+
+    if ($title_id = 31) {
+      return 5;
+    } else {
+      return 15;
+    }
+
+  }
+
   public function borrow_book()
   {
     $book_id = $this->input->post('book_id');
@@ -41,6 +54,7 @@ class Borrow_model extends CI_Model{
     $this->db->from('lend');
     $this->db->join('books','books.book_id = lend.book_id');
     $this->db->where('lend.student_id', $student_id);
+    $this->db->where('lend.send_state', 'n');
     $query = $this->db->get();
 
     return $query;

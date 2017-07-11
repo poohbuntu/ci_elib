@@ -14,6 +14,7 @@ class Borrow extends CI_Controller{
   function index()
   {
     $this->member_model->check_member_session();
+    
     $this->borrow_model->borrow_book();
     $data['result'] = $this->borrow_model->list_borrow_book()->result();
     $this->load->view('/borrow/borrow_form', $data);

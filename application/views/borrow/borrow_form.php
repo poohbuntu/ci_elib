@@ -11,6 +11,9 @@
       echo nbs();
       echo $this->session->userdata('sess_surename');
     ?>
+    <?php
+      echo $limit_book;
+    ?>
     <hr>
     <?php
       echo form_open('borrow/index');

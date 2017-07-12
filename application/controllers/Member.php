@@ -35,7 +35,6 @@ class Member extends CI_Controller{
           'logged_in'=>'OK',
         );
         $this->session->set_userdata($sess_member);
-        $data['limit_book'] = $this->borrow_model->check_limit_book();
         $data['result'] = $this->borrow_model->list_borrow_book()->result();
         $this->load->view('/borrow/borrow_form', $data);
       }

@@ -8,7 +8,7 @@ class Borrow_model extends CI_Model{
     parent::__construct();
     //Codeigniter : Write Less Do More
   }
-
+/*
   public function check_limit_book()
   {
     $student_id = $this->session->userdata('sess_student_id');
@@ -21,25 +21,36 @@ class Borrow_model extends CI_Model{
     }
 
   }
-
+*/
   public function borrow_book()
   {
     $book_id = $this->input->post('book_id');
 
-    $this->db->select();
+    $this->db->select('book_id,book_name');
     $this->db->from('books');
     $this->db->where('book_id', $book_id);
-    $query = $this->db->get();
+    $book_query = $this->db->get();
 
-    if ($query->num_rows()==1) {
-      $rows = $query->row();
-      $data = array(
-        'student_id'=>$this->session->userdata('sess_student_id'),
-        'book_id'=>$rows->book_id,
-        'borrow_date'=>date('Y-m-d'),
-        'send_state'=>'n',
-      );
-      $this->db->insert('lend', $data);
+    if ($book_query->num_rows()==1) {
+      $book_rows = $book_query->row();
+
+      $this->db->select();
+      $this->db->from('lend');
+      $this->db->where('book_id', $book_id);
+      $lend_query = $this->db->get();
+
+      if ($lend_query->num_rows()==null) {
+        $data = array(
+          'student_id'=>$this->session->userdata('sess_student_id'),
+          'book_id'=>$book_rows->book_id,
+          'borrow_date'=>date('Y-m-d'),
+          'send_state'=>'n',
+        );
+        $this->db->insert('lend', $data);
+      }
+      else {
+        return FALSE;
+      }
     }
     else {
       return FALSE;

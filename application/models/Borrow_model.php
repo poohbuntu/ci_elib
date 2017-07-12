@@ -49,7 +49,24 @@ class Borrow_model extends CI_Model{
         $this->db->insert('lend', $data);
       }
       else {
-        return FALSE;
+        $this->db->select();
+        $this->db->from('lend');
+        $this->db->where('book_id', $book_id);
+        $this->db->where('send_state', 'n');
+        $lend_query2 = $this->db->get();
+
+        if ($lend_query2->num_rows()!=null) {
+          return FALSE;
+        }
+        else {
+          $data = array(
+            'student_id'=>$this->session->userdata('sess_student_id'),
+            'book_id'=>$book_rows->book_id,
+            'borrow_date'=>date('Y-m-d'),
+            'send_state'=>'n',
+          );
+          $this->db->insert('lend', $data);
+        }
       }
     }
     else {

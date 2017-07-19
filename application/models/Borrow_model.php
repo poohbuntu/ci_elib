@@ -8,25 +8,19 @@ class Borrow_model extends CI_Model{
     parent::__construct();
     //Codeigniter : Write Less Do More
   }
-/*
-  public function check_limit_book()
-  {
-    $student_id = $this->session->userdata('sess_student_id');
-    $title_id = $this->session->userdata('sess_title_id');
 
-    if ($title_id = 31) {
-      return 5;
-    } else {
-      return 15;
-    }
-
-  }
-*/
   public function borrow_book()
   {
     $student_id = $this->session->userdata('sess_student_id');
     $title_id = $this->session->userdata('sess_title_id');
     $book_id = $this->input->post('book_id');
+
+    if ($title_id==8) {
+      $limit_date=15;
+    }
+    else {
+      $limit_date=7;
+    }
 
     $this->db->select();
     $this->db->from('lend');
@@ -54,6 +48,7 @@ class Borrow_model extends CI_Model{
             'student_id'=>$this->session->userdata('sess_student_id'),
             'book_id'=>$book_rows->book_id,
             'borrow_date'=>date('Y-m-d'),
+            'limit_date'=>$limit_date,
             'send_state'=>'n',
           );
           $this->db->insert('lend', $data);

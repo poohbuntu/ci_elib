@@ -49,6 +49,7 @@ class Borrow_model extends CI_Model{
             'book_id'=>$book_rows->book_id,
             'borrow_date'=>date('Y-m-d'),
             'limit_date'=>$limit_date,
+            'fine'=>3,
             'send_state'=>'n',
           );
           $this->db->insert('lend', $data);
@@ -68,6 +69,8 @@ class Borrow_model extends CI_Model{
               'student_id'=>$this->session->userdata('sess_student_id'),
               'book_id'=>$book_rows->book_id,
               'borrow_date'=>date('Y-m-d'),
+              'limit_date'=>$limit_date,
+              'fine'=>3,
               'send_state'=>'n',
             );
             $this->db->insert('lend', $data);

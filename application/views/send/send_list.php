@@ -22,13 +22,27 @@
       foreach ($result as $row) {
         echo $row->book_id;
         echo nbs();
+        echo $row->book_name;
+        echo nbs();
         echo $row->borrow_date;
         echo nbs();
         echo $row->send_date;
         echo nbs();
+        echo $row->limit_date;
+        echo nbs();
+        echo $row->late_date;
+        echo nbs();
         echo $row->fine;
+        echo nbs();
+        echo $row->fine_total;
+        echo nbs();
+        echo $row->student_id;
+        echo nbs();
+        echo $row->name;
+        echo nbs();
+        echo $row->surename;
         echo br();
-        $total_sum+=$row->fine;
+        $total_sum+=$row->fine_total;
       }
     ?>
     <?php echo $total_sum;?>

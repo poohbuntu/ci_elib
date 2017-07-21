@@ -37,7 +37,7 @@ class Member_model extends CI_Model{
   {
     $student_id = $this->input->post('student_id');
 
-    $this->db->select('name, surename');
+    $this->db->select('name, surename, title_id');
     $this->db->from('members');
     $this->db->where('student_id', $student_id);
     $query = $this->db->get();

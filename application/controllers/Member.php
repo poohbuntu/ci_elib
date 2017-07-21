@@ -29,6 +29,7 @@ class Member extends CI_Controller{
       if ($this->member_model->check_member()==TRUE) {
         $sess_member = array(
           'sess_student_id'=>$student_id,
+          'sess_title_id'=>$this->member_model->get_member()->title_id,
           'sess_name'=>$this->member_model->get_member()->name,
           'sess_surename'=>$this->member_model->get_member()->surename,
           'logged_in'=>'OK',

@@ -8,19 +8,68 @@
 
   </head>
   <body>
-    <?php
-      $data=array(
-        'autofocus'=>'autofocus',
-        'name'=>'student_id'
-      );
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="navbar navbar-dark bg-inverse">
+            <a class="navbar-brand" href="#">ห้องสมุด วพ.ตร.</a>
+            <ul class="nav navbar-nav">
+              <?php
+                $attributes = array(
+                  'class'=>'nav-link',
+                );
+              ?>
+              <li class="nav-item">
+                <?php echo anchor('home/index', 'Home' ,$attributes); ?>
+              </li>
+              <li class="nav-item">
+                <?php echo anchor('member/index', 'ยืมหนังสือ' ,$attributes); ?>
+              </li>
+              <li class="nav-item">
+                <?php echo anchor('send/index', 'คืนหนังสือ' ,$attributes); ?>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="page-header">
+            <h1>ค้นหาสมาชิก</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <?php
+            $data=array(
+              'autofocus'=>'autofocus',
+              'name'=>'student_id',
+              'id'=>'student_id',
+              'class'=>'form-control'
+            );
+            $form=array(
+              'class'=>'form-inline'
+            );
+            $submit=array(
+              'class'=>'btn btn-primary'
+            );
+            $clear=array(
+              'class'=>'btn btn-default'
+            );
 
-      echo validation_errors();
-      echo form_open('member/index2');
-      echo form_label('Member Barcode', 'student_id');
-      echo form_input($data);
-      echo form_submit('search', 'Search');
-      echo form_reset('clear', 'Clear');
-      echo form_close();
-    ?>
+            echo validation_errors();
+            echo form_open('member/index2',$form);
+            echo "<div class='form-group'>";
+            echo form_label('Member Barcode', 'student_id');
+            echo form_input($data);
+            echo "</div>";
+            echo form_submit('search', 'Search',$submit);
+            echo form_reset('clear', 'Clear',$clear);
+            echo form_close();
+          ?>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

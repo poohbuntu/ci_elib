@@ -9,24 +9,30 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-dark bg-inverse">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <ul class="nav navbar-nav">
-        <?php
-          $attributes = array(
-            'class'=>'nav-link',
-          );
-        ?>
-        <li class="nav-item">
-          <?php echo anchor('home/index', 'Home' ,$attributes); ?>
-        </li>
-        <li class="nav-item">
-          <?php echo anchor('member/index', 'ยืมหนังสือ' ,$attributes); ?>
-        </li>
-        <li class="nav-item">
-          <?php echo anchor('send/index', 'คืนหนังสือ' ,$attributes); ?>
-        </li>
-      </ul>
-    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="navbar navbar-dark bg-inverse">
+            <a class="navbar-brand" href="#">ห้องสมุด วพ.ตร.</a>
+            <ul class="nav navbar-nav">
+              <?php
+                $attributes = array(
+                  'class'=>'nav-link',
+                );
+              ?>
+              <li class="nav-item">
+                <?php echo anchor('home/index', 'Home' ,$attributes); ?>
+              </li>
+              <li class="nav-item">
+                <?php echo anchor('member/index', 'ยืมหนังสือ' ,$attributes); ?>
+              </li>
+              <li class="nav-item">
+                <?php echo anchor('send/index', 'คืนหนังสือ' ,$attributes); ?>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

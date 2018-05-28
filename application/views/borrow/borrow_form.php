@@ -3,17 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>Borrow Form</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="http://localhost/ci_elib/assets/css/bootstrap.min.css">
+    <script src="http://localhost/ci_elib/assets/js/jquery-3.min.js"></script>
+    <script src="http://localhost/ci_elib/assets/js/bootstrap.min.js"></script>
 
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <nav class="navbar navbar-dark bg-inverse">
+          <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">ห้องสมุด วพ.ตร.</a>
-            <ul class="nav navbar-nav">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
               <?php
                 $attributes = array(
                   'class'=>'nav-link',
@@ -29,6 +36,7 @@
                 <?php echo anchor('send/index', 'คืนหนังสือ' ,$attributes); ?>
               </li>
             </ul>
+            </div>
           </nav>
         </div>
       </div>
@@ -45,9 +53,34 @@
             <?php
               echo $this->session->userdata('sess_student_id');
               echo nbs();
+              echo $this->session->userdata('sess_title_name');
+              echo nbs();
               echo $this->session->userdata('sess_name');
               echo nbs();
               echo $this->session->userdata('sess_surename');
+              echo br();
+              echo 'กลุ่ม'.nbs();
+              echo $this->session->userdata('sess_status');
+              echo 'ประเภท'.nbs();
+              echo $this->session->userdata('sess_status_type');
+              echo br();
+              echo 'ยืมหนังสือได้'.nbs();
+              echo $this->session->userdata('sess_status_book_day');
+              echo 'วัน'.nbs().'จำนวน'.nbs();
+              echo $this->session->userdata('sess_status_book_unit');
+              echo 'เล่ม';
+              echo br();
+              echo 'ยืมCDได้'.nbs();
+              echo $this->session->userdata('sess_status_cd_day');
+              echo 'วัน'.nbs().'จำนวน'.nbs();
+              echo $this->session->userdata('sess_status_cd_unit');
+              echo 'แผ่น';
+              echo br();
+              echo 'ยืมสื่อสิ่งพิมพ์ได้'.nbs();
+              echo $this->session->userdata('sess_status_print_day');
+              echo 'วัน'.nbs().'จำนวน'.nbs();
+              echo $this->session->userdata('sess_status_print_unit');
+              echo 'เล่ม';
             ?>
           </p>
           <hr>
@@ -60,10 +93,12 @@
               'autofocus'=>'autofocus',
               'name'=>'book_id',
               'id'=>'book_id',
-              'class'=>'form-control'
+              'class'=>'form-control',
+              'autocomplete'=>'off',
             );
             $form=array(
-              'class'=>'form-inline'
+              'class'=>'form-inline',
+              'autocomplete'=>'off',
             );
             $submit=array(
               'class'=>'btn btn-primary'
@@ -95,6 +130,7 @@
                 <td>วันที่ยืม</td>
                 <td>ระยะเวลายืมได้</td>
                 <td>วันที่ต้องคืน</td>
+                <td>สถานะการคืน</td>
               </tr>
               <?php
                 foreach ($result as $row) {
@@ -102,8 +138,9 @@
                   echo "<td>".$row->book_id."</td>";
                   echo "<td>".$row->book_name."</td>";
                   echo "<td>".$row->borrow_date."</td>";
-                  echo "<td>".$row->limit_date."</td>";
+                  echo "<td>".$row->limit_day."</td>";
                   echo "<td>".$row->will_return_date."</td>";
+                  echo "<td>".$row->send_state."</td>";
                   echo "</tr>";
                 }
               ?>
